@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Table from './Table';
+import PeopleTable from './PeopleTable';
 
 class App extends Component {
   render() {
@@ -26,7 +26,7 @@ class App extends Component {
         <header className="App-header">
           People of SalesLoft
         </header>
-        <Table peopleData={people}/>
+        <PeopleTable peopleData={people}/>
       </div>
     );
   };

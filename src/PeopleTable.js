@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 
 const TableBody = props => {
-  return (
-    <h1>Hi</h1>
-  )
+  console.log(props)
+  const rows = props.peopleData.map((row, index) => {
+    return (
+      <tr key={index}>
+        <td>{row.display_name}</td>
+        <td>{row.email_address}</td>
+        <td>{row.title}</td>
+      </tr>
+    );
+  });
+  return <tbody>{rows}</tbody>;
 };
 
 class Table extends Component {
