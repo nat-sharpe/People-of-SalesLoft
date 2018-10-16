@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Table from './Table';
 
 const App = () => {
   return (
@@ -7,6 +8,7 @@ const App = () => {
       <header className="App-header">
         People of SalesLoft
       </header>
+      <Table />
     </div>
   );
 };
