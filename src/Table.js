@@ -1,9 +1,17 @@
 import React, {Component} from 'react';
 
+const TableBody = props => {
+  return (
+    <h1>Hi</h1>
+  )
+};
+
 class Table extends Component {
   render() {
+    const { peopleData } = this.props;
+
     return (
-      <table className="Table">
+      <table>
         <thead>
           <tr>
             <th>Name</th>
@@ -11,26 +19,10 @@ class Table extends Component {
             <th>Title</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Kyle Porter</td>
-            <td>kyle.porter@salesloft.com</td>
-            <td>CEO</td>
-          </tr>
-          <tr>
-            <td>Nora Ignatius</td>
-            <td>nora.ignatius@salesloft.com</td>
-            <td>Corporate Recruiter</td>
-          </tr>
-          <tr>
-            <td>Nat Sharpe</td>
-            <td>nat.sharpe@salesloft.com</td>
-            <td>Support Software Engineer</td>
-          </tr>
-        </tbody>
+        <TableBody peopleData={peopleData} />
       </table>
     );
-  }
-}
+  };
+};
 
 export default Table;
