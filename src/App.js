@@ -5,6 +5,30 @@ import PeopleTable from './PeopleTable';
 import './App.css';
 
 class App extends Component {
+  
+  componentDidMount() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = 'https://api.salesloft.com/v2/people.json';
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const getPeople = async () => {
+      await fetch((proxyurl + url), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization" : `Bearer ${apiKey}`
+        }
+      })
+        .then(result => {
+          const jsonResult = result.json();
+          jsonResult.then(people => {
+            console.log(people.data)
+          });
+        })
+        .catch(err => console.log(err));
+    };
+    getPeople();
+  };
+
   render() {
     return (
       <Provider store={store}>
@@ -20,4 +44,3 @@ class App extends Component {
 };
 
 export default App;
-
