@@ -1,23 +1,8 @@
 import React, {Component} from 'react';
+import TableBody from './TableBody';
 
-const TableBody = props => {
-  console.log(props)
-  const rows = props.peopleData.map((row, index) => {
-    return (
-      <tr key={index}>
-        <td>{row.display_name}</td>
-        <td>{row.email_address}</td>
-        <td>{row.title}</td>
-      </tr>
-    );
-  });
-  return <tbody>{rows}</tbody>;
-};
-
-class Table extends Component {
+class PeopleTable extends Component {
   render() {
-    const { peopleData } = this.props;
-
     return (
       <table>
         <thead>
@@ -27,10 +12,10 @@ class Table extends Component {
             <th>Title</th>
           </tr>
         </thead>
-        <TableBody peopleData={peopleData} />
+        <TableBody />
       </table>
     );
   };
 };
 
-export default Table;
+export default PeopleTable;
