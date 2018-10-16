@@ -1,5 +1,12 @@
 const reducer = (state, action) => {
-  return state;
+  if (action.type === "GET_PEOPLE") {
+    return {
+      ...state,
+      people: action.payload
+    } 
+  } else {
+    return state;
+  }
 }
 
 export default reducer;
