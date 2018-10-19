@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PeopleTable from './PeopleTable';
-import './App.css';
+import '../App.css';
 
 class PeopleScreen extends Component {
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
-import PeopleScreen from './PeopleScreen';
-import FrequencyScreen from './FrequencyScreen';
-import NavBar from './NavBar';
+import PeopleScreen from './Components/PeopleScreen';
+import FrequencyScreen from './Components/FrequencyScreen';
+import NavBar from './Components/NavBar';
 
 const Router = () => {
   return (

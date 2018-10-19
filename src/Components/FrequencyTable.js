@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
+import '../App.css';
 
 const FrequencyTable = ({ people }) => {
 
@@ -11,7 +11,7 @@ const FrequencyTable = ({ people }) => {
       if (b['count'] > a['count']) {
         comparison = 1;
       };
-      return (comparison);
+      return comparison;
     });
   };
 
