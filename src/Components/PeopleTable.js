@@ -6,6 +6,7 @@ const PeopleTable = ({ people }) => {
   console.log(people.length);
 
   const rows = people.map((row, index) => {
+    console.log(row)
     return (
       <tr key={index}>
         <td>{row.display_name}</td> 
