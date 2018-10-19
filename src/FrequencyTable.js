@@ -12,13 +12,40 @@ const FrequencyTable = ({ people }) => {
         let char = email[jj];
         console.log(char);
         if (email[jj] !== '@') {
-          uniques.hasOwnProperty(char) ? uniques[char] += 1 : uniques[char] = 1;
+          uniques.hasOwnProperty(char) ? 
+            uniques[char].freq +=1 : 
+            uniques[char] = {name: char, freq: 1}
         } else {
           break;
         };
       };
     };
     console.log(uniques);
+
+    const sortAllChars = chars => {
+      let newArray = []
+    
+      Object.keys(chars).forEach(key => {
+        newArray.push(chars[key])
+      });
+    
+      const sortDescending = newArray => {
+        return newArray.sort(function(a,b){
+          console.log(b)
+          console.log(a)
+          let comparison = -1;
+          if (b['freq'] > a['freq']) {
+            comparison = 1;
+          };
+          console.log(comparison)
+          return ( comparison )
+        })
+      }
+    
+      return sortDescending(newArray);
+    }
+    
+    console.log(sortAllChars(uniques));
 
     return [
       {name: 'M', freq: 5},
