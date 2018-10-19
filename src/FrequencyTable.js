@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 const FrequencyTable = ({ people }) => {
 
   const sortDescending = newArray => {
-    
+
     return newArray.sort(function(a,b){
       let comparison = -1;
-      if (b['freq'] > a['freq']) {
+      if (b['count'] > a['count']) {
         comparison = 1;
       };
       return (comparison);
@@ -31,10 +31,11 @@ const FrequencyTable = ({ people }) => {
       let email = people[ii].email_address;
       for (let jj = 0; jj < email.length; jj++) {
         let char = email[jj];
+        char = char.toUpperCase();
         if (email[jj] !== '@') {
           uniques.hasOwnProperty(char) ? 
-            uniques[char].freq +=1 : 
-            uniques[char] = {name: char, freq: 1}
+            uniques[char].count += 1 : 
+            uniques[char] = {name: char, count: 1}
         } else {
           break;
         };
@@ -50,7 +51,7 @@ const FrequencyTable = ({ people }) => {
     return (
       <tr key={index}>
         <td>{char.name}</td> 
-        <td>{char.freq}</td>
+        <td>{char.count}</td>
       </tr>
     );
   });
