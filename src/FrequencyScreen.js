@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
 
 class FrequencyScreen extends Component {
   render() {
@@ -9,7 +8,6 @@ class FrequencyScreen extends Component {
           <tr>
             <th>Character</th>
             <th>Frequency</th>
-            <th>Title</th>
           </tr>
         </thead>
       </table>
@@ -17,10 +15,4 @@ class FrequencyScreen extends Component {
   };
 };
 
-const mapStateToProps = (state) => {
-  return {
-    dispatch: state.dispatch
-  };
-};
-
-export default connect(mapStateToProps)(FrequencyScreen);
+export default FrequencyScreen;
