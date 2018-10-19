@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const PeopleTable = ({ people }) => {
+  console.log(people.length);
+
   const rows = people.map((row, index) => {
     return (
       <tr key={index}>
