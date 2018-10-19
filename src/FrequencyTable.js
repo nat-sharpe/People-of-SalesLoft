@@ -3,14 +3,34 @@ import { connect } from 'react-redux';
 
 const FrequencyTable = ({ people }) => {
 
+  const sortDescending = newArray => {
+    
+    return newArray.sort(function(a,b){
+      let comparison = -1;
+      if (b['freq'] > a['freq']) {
+        comparison = 1;
+      };
+      return (comparison);
+    });
+  };
+
+  const sortAllChars = chars => {
+    let newArray = [];
+
+    Object.keys(chars).forEach(key => {
+      newArray.push(chars[key])
+    });
+
+    return sortDescending(newArray);
+  };
+
   const findUniqueChars = people => {
     const uniques = {};
+
     for (let ii = 0; ii < people.length; ii++) {
       let email = people[ii].email_address;
-      console.log(email);
       for (let jj = 0; jj < email.length; jj++) {
         let char = email[jj];
-        console.log(char);
         if (email[jj] !== '@') {
           uniques.hasOwnProperty(char) ? 
             uniques[char].freq +=1 : 
@@ -20,38 +40,8 @@ const FrequencyTable = ({ people }) => {
         };
       };
     };
-    console.log(uniques);
 
-    const sortAllChars = chars => {
-      let newArray = []
-    
-      Object.keys(chars).forEach(key => {
-        newArray.push(chars[key])
-      });
-    
-      const sortDescending = newArray => {
-        return newArray.sort(function(a,b){
-          console.log(b)
-          console.log(a)
-          let comparison = -1;
-          if (b['freq'] > a['freq']) {
-            comparison = 1;
-          };
-          console.log(comparison)
-          return ( comparison )
-        })
-      }
-    
-      return sortDescending(newArray);
-    }
-    
-    console.log(sortAllChars(uniques));
-
-    return [
-      {name: 'M', freq: 5},
-      {name: 'J', freq: 3},
-      {name: 'O', freq: 1}
-    ];
+    return sortAllChars(uniques);
   };
   
   const uniqueChars = findUniqueChars(people);
