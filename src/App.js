@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import store from './Redux/store';
-import PeopleTable from './PeopleTable';
+import PeopleScreen from './PeopleScreen';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,7 @@ class App extends Component {
           <header className="App-header">
             People of SalesLoft
           </header>
-          <PeopleTable />
+          <PeopleScreen />
         </div>
       </Provider>
     );

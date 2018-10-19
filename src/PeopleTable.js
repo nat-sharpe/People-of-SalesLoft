@@ -1,55 +1,21 @@
-import React, {Component} from 'react';
-import TableBody from './TableBody';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class PeopleTable extends Component {
-  
-  componentDidMount() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = 'https://api.salesloft.com/v2/people.json';
-    const apiKey = process.env.REACT_APP_API_KEY;
-    const getPeople = async () => {
-      await fetch((proxyurl + url), {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization" : `Bearer ${apiKey}`
-        }
-      })
-        .then(result => {
-          const jsonResult = result.json();
-          jsonResult.then(people => {
-            this.props.dispatch({
-              type: 'GET_PEOPLE',
-              payload: people.data
-            })
-          });
-        })
-        .catch(err => console.log(err));
-    };
-    getPeople();
-  };
-
-  render() {
+const PeopleTable = ({ people }) => {
+  const rows = people.map((row, index) => {
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Title</th>
-          </tr>
-        </thead>
-        <TableBody />
-      </table>
+      <tr key={index}>
+        <td>{row.display_name}</td> 
+        <td>{row.email_address}</td>
+        <td>{row.title}</td>
+      </tr>
     );
-  };
+  });
+  return <tbody>{rows}</tbody>;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    dispatch: state.dispatch
-  };
+const mapStateToProps = state => {
+  return { people: state.people };
 };
 
 export default connect(mapStateToProps)(PeopleTable);
