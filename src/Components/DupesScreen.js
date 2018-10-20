@@ -6,7 +6,7 @@ class DupeScreen extends Component {
 
   render() {
     return (
-      <table classname="table">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
