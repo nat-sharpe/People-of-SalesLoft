@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import FrequencyTable from './FrequencyTable';
-import '../App.css';
 
 class FrequencyScreen extends Component {
   render() {

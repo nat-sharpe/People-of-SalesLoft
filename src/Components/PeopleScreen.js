@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import PeopleTable from './PeopleTable';
-import '../App.css';
 
 class PeopleScreen extends Component {
 
   render() {
     return (
-      <table classname="table">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>

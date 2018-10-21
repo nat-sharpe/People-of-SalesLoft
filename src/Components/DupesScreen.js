@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import DupesTable from './DupesTable';
-import '../App.css';
 
 class DupeScreen extends Component {
 

@@ -7,3 +7,18 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.main-header {
+  text-align: left;
+  background-color: #1F85C0;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: bold;
+  margin: 20px 0px;
+  padding: 20px;
+}
+
+table, th, td {
+  border: 1px solid lightgrey;
+  padding: 5px;
+}

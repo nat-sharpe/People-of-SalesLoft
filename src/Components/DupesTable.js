@@ -1,92 +1,83 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../App.css';
 
 const DupesTable = ({ people }) => {
   
-    const countChars = email => {
-      let charCount = {};
-      for (let ii = 0; ii < email.length; ii++) {
-        let char = email[ii];
-        char = char.toUpperCase();
-        if (char !== '@') {
-          charCount.hasOwnProperty(char) ? 
-            charCount[char] += 1 : 
-            charCount[char] = 1
-        } else {
-          break;
-        };
+  const countChars = email => {
+    let charCount = {};
+    for (let ii = 0; ii < email.length; ii++) {
+      let char = email[ii];
+      char = char.toUpperCase();
+      if (char !== '@') {
+        charCount.hasOwnProperty(char) ? 
+          charCount[char] += 1 : 
+          charCount[char] = 1
+      } else {
+        break;
       };
-
-      console.log(charCount)
-      return charCount;
     };
 
-  const findPossibleDupes = peopleToCheck => {
+    return charCount;
+  };
+  
+
+  const findPossibleDupes = (peopleToCheck, numDifferences) => {
+    let newPeopleToCheck = peopleToCheck.map(person => person);
     let possibleDupes = [];
 
     for (let ii = 0; ii < peopleToCheck.length; ii++) {
-      let name1 = peopleToCheck[ii].name;
+      console.log('1 ' + peopleToCheck.length)
+      let name1 = peopleToCheck[ii].display_name;
       let title1 = peopleToCheck[ii].title;
       let email1 = peopleToCheck[ii].email_address;
       let email1Chars = countChars(email1);
       let email1Keys = Object.keys(email1Chars);
-      for (let jj = 1; jj < peopleToCheck.length; jj++) {
-        let difference = 0;
-        let name2 = peopleToCheck[ii].name;
-        let title2 = peopleToCheck[ii].title;
-        let email2 = peopleToCheck[jj].email_address;
-        let email2Chars = countChars(email2);
-        let email2Keys = Object.keys(email2Chars);
-        let longerEmail = (email2Keys.length < email1Keys.length) ? email1Keys : email2Keys;
-        for (let kk = 0; kk < longerEmail.length; kk++) {
-          let char = longerEmail[kk];
-          console.log('char ' + char)
-          if (char !== '@') {
-            console.log(email2Chars.hasOwnProperty(char) && email1Chars.hasOwnProperty(char))
-            if (email2Chars.hasOwnProperty(char) && email1Chars.hasOwnProperty(char)) {
-              difference += (email2Chars[char] - email1Chars[char]);
-              console.log(difference)
+      newPeopleToCheck.shift();
+      for (let jj = 0; jj < newPeopleToCheck.length; jj++) {
+        console.log('d ' + newPeopleToCheck.length)
+          let differences = 0;
+          let name2 = newPeopleToCheck[jj].display_name;
+          let title2 = newPeopleToCheck[jj].title;
+          let email2 = newPeopleToCheck[jj].email_address;
+          let email2Chars = countChars(email2);
+          let email2Keys = Object.keys(email2Chars);
+          let longerEmail = (email2Keys.length < email1Keys.length) ? email1Keys : email2Keys;
+          for (let kk = 0; kk < longerEmail.length; kk++) {
+            let char = longerEmail[kk];
+            if (char !== '@') {
+              if (email2Chars.hasOwnProperty(char) && email1Chars.hasOwnProperty(char)) {
+                ((email2Chars[char] - email1Chars[char]) >= 0) ?                 differences += (email2Chars[char] - email1Chars[char]) :
+                differences += (-1 * (email2Chars[char] - email1Chars[char]));
+              } else if (email2Chars.hasOwnProperty(char)) {
+                differences += email2Chars[char]
+              } else {
+                differences += email1Chars[char]
+              }
+            } else { 
+              break 
             }
-          } else { 
-            break 
+          };
+          if (differences < numDifferences) {
+            possibleDupes.push({
+              name1, 
+              email1,
+              title1,
+              name2, 
+              email2,
+              title2
+            });
           }
-        };
-        if (((difference * -1) * -1) > -5) {
-          possibleDupes.push({
-            name1: name1, 
-            email1: email1,
-            title1: title1, 
-            name2: name2, 
-            email2: email2,
-            title2: title2
-          });
-        }
       }
-      peopleToCheck.shift();
+      console.log('2 ' + peopleToCheck.length)
     };
-
+    
     return possibleDupes;
   };
   
-  const testData = [
-    {
-      name: 'Nat',
-      email_address: 'nattttttt@nat.com',
-      title: 'Software Engineer'
-    },
-    {
-      name: 'Nat',
-      email_address: 'nat@nat.com',
-      title: 'Software Engineer'
-    }
-  ];
 
-  const possibleDupes = findPossibleDupes(testData);
+  const dupeList = findPossibleDupes(people, 5);
 
-  const rows = possibleDupes.map((row, index) => {
-    console.log(row.email1)
-    console.log(row.email2)
+  const rows = dupeList.map((row, index) => {
     return (
       <tr key={index}>
         <td><p>{row.name1}</p>{row.name2}<p></p></td> 
