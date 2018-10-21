@@ -19,44 +19,46 @@ const DupesTable = ({ people }) => {
 
     return charCount;
   };
-  
 
   const findPossibleDupes = (peopleToCheck, numDifferences) => {
     let newPeopleToCheck = peopleToCheck.map(person => person);
     let possibleDupes = [];
 
     for (let ii = 0; ii < peopleToCheck.length; ii++) {
-      console.log('1 ' + peopleToCheck.length)
       let name1 = peopleToCheck[ii].display_name;
       let title1 = peopleToCheck[ii].title;
       let email1 = peopleToCheck[ii].email_address;
       let email1Chars = countChars(email1);
       let email1Keys = Object.keys(email1Chars);
+
       newPeopleToCheck.shift();
+
       for (let jj = 0; jj < newPeopleToCheck.length; jj++) {
-        console.log('d ' + newPeopleToCheck.length)
-          let differences = 0;
-          let name2 = newPeopleToCheck[jj].display_name;
-          let title2 = newPeopleToCheck[jj].title;
-          let email2 = newPeopleToCheck[jj].email_address;
-          let email2Chars = countChars(email2);
-          let email2Keys = Object.keys(email2Chars);
-          let longerEmail = (email2Keys.length < email1Keys.length) ? email1Keys : email2Keys;
+        let differences = 0;
+        let name2 = newPeopleToCheck[jj].display_name;
+        let title2 = newPeopleToCheck[jj].title;
+        let email2 = newPeopleToCheck[jj].email_address;
+        let email2Chars = countChars(email2);
+        let email2Keys = Object.keys(email2Chars);
+        let longerEmail = (email2Keys.length < email1Keys.length) ? email1Keys : email2Keys;
+        if (email1[0] === email2[0]) {
           for (let kk = 0; kk < longerEmail.length; kk++) {
             let char = longerEmail[kk];
+
             if (char !== '@') {
               if (email2Chars.hasOwnProperty(char) && email1Chars.hasOwnProperty(char)) {
                 ((email2Chars[char] - email1Chars[char]) >= 0) ?                 differences += (email2Chars[char] - email1Chars[char]) :
                 differences += (-1 * (email2Chars[char] - email1Chars[char]));
               } else if (email2Chars.hasOwnProperty(char)) {
-                differences += email2Chars[char]
+                differences += email2Chars[char];
               } else {
-                differences += email1Chars[char]
+                differences += email1Chars[char];
               }
             } else { 
-              break 
+              break; 
             }
-          };
+          }
+
           if (differences < numDifferences) {
             possibleDupes.push({
               name1, 
@@ -67,13 +69,12 @@ const DupesTable = ({ people }) => {
               title2
             });
           }
-      }
-      console.log('2 ' + peopleToCheck.length)
+        }
+      };
     };
     
     return possibleDupes;
   };
-  
 
   const dupeList = findPossibleDupes(people, 5);
 
