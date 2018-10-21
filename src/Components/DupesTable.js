@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const DupesTable = ({ people }) => {
   
+  // Counts the number of instances of each unique character in the local-part of an email address. Returns an object with the characters as keys and the counts as their values.
   const countChars = email => {
     let charCount = {};
     for (let ii = 0; ii < email.length; ii++) {
@@ -20,6 +21,7 @@ const DupesTable = ({ people }) => {
     return charCount;
   };
 
+  // Loops through a list of people and compares each email address with every other one. If the local-parts of two emails begin with the same character it checks to see if the number of differences between the two strings is less than the passed-in difference number. If so it pushes an object containing the emails, names and titles of both people into an array and returns it.
   const findPossibleDupes = (peopleToCheck, numDifferences) => {
     let newPeopleToCheck = peopleToCheck.map(person => person);
     let possibleDupes = [];
