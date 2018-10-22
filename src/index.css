@@ -9,16 +9,37 @@ body {
 }
 
 .main-header {
+  width: 100%;
   text-align: left;
   background-color: #1F85C0;
   color: #ffffff;
   font-size: 30px;
   font-weight: bold;
   margin: 20px 0px;
-  padding: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
-table, th, td {
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+table {
+  border: 2px solid #1F85C0;
+  color: #1F85C0;
+}
+
+th {
+  background-color: #1F85C0;
+  padding: 5px;
+  color: white;
+}
+
+td {
   border: 1px solid lightgrey;
   padding: 5px;
+  color: black;
 }

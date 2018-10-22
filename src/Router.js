@@ -4,11 +4,12 @@ import NavBar from './Components/NavBar';
 import PeopleScreen from './Components/PeopleScreen';
 import FrequencyScreen from './Components/FrequencyScreen';
 import DupesScreen from './Components/DupesScreen';
+import './index.css';
 
 const Router = () => {
   return (
     <HashRouter>
-      <div>
+      <div className="main">
         <NavBar />
         <Switch>
           <Route exact path="/" component={PeopleScreen} />
