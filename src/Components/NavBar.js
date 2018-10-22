@@ -8,6 +8,7 @@ const NavBar = () => {
       <div>
         <button><Link to="/">Home</Link></button> 
         <button><Link to="/frequency">Frequency Count</Link></button>
+        <button><Link to="/dupes">Possible Duplicates</Link></button>
       </div>
     </nav>
   )
