@@ -8,6 +8,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+table {
+  border: 2px solid #1F85C0;
+  color: #1F85C0;
+}
+
+th {
+  background-color: #1F85C0;
+  padding: 5px;
+  color: white;
+}
+
+td {
+  border: 1px solid lightgrey;
+  padding: 5px;
+  color: #000000;
+}
+
 .main-header {
   width: 100%;
   text-align: left;
@@ -27,19 +44,11 @@ body {
   align-items: center;
 }
 
-table {
-  border: 2px solid #1F85C0;
+.landing-body {
+  padding: 10px;
+}
+
+.landing-header {
   color: #1F85C0;
 }
 
-th {
-  background-color: #1F85C0;
-  padding: 5px;
-  color: white;
-}
-
-td {
-  border: 1px solid lightgrey;
-  padding: 5px;
-  color: black;
-}

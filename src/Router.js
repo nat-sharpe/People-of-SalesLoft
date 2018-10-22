@@ -4,6 +4,7 @@ import NavBar from './Components/NavBar';
 import PeopleScreen from './Components/PeopleScreen';
 import FrequencyScreen from './Components/FrequencyScreen';
 import DupesScreen from './Components/DupesScreen';
+import LandingScreen from './Components/LandingScreen';
 import './index.css';
 
 const Router = () => {
@@ -12,7 +13,8 @@ const Router = () => {
       <div className="main">
         <NavBar />
         <Switch>
-          <Route exact path="/" component={PeopleScreen} />
+          <Route exact path="/" component={LandingScreen} />
+          <Route path="/people" component={PeopleScreen} />
           <Route path="/frequency" component={FrequencyScreen} />
           <Route path="/dupes" component={DupesScreen} />
         </Switch>
