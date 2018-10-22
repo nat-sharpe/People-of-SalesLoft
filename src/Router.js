@@ -1,5 +1,6 @@
 import React from "react";
 import { HashRouter, Switch, Route } from "react-router-dom";
+import { connect } from 'react-redux';
 import NavBar from './Components/NavBar';
 import LoadingScreen from './Components/LoadingScreen';
 import PeopleScreen from './Components/PeopleScreen';
@@ -8,9 +9,7 @@ import DupesScreen from './Components/DupesScreen';
 import LandingScreen from './Components/LandingScreen';
 import './index.css';
 
-let loaded = false;
-
-const Router = () => {
+const Router = ({loaded}) => {
   return (
     <HashRouter>
       <div className="main">
@@ -26,4 +25,8 @@ const Router = () => {
   );
 };
 
-export default Router;
+const mapStateToProps = state => {
+  return { loaded: state.loaded };
+};
+
+export default connect(mapStateToProps)(Router);

@@ -2,7 +2,8 @@ import { createStore } from "redux";
 import reducer from "./reducer.js";
 
 let state = {
-  people: []
+  people: [],
+  loaded: false
 };  
 
 let store = createStore(
